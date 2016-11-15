@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QTextEdit>
 
+#include <QtNetwork>
+#include <QTcpServer>
+
 namespace Ui {
 class MainWindow;
 }
@@ -32,6 +35,7 @@ private slots:
 
     void _initWindow();
     void _initData();
+    void _updateServer(QString message, int length);
 private:
     Ui::MainWindow *ui;
 
@@ -39,6 +43,9 @@ private:
 
     QTextEdit * m_pIPEdit;
     QString   m_strIP;
+
+    QTcpServer *m_pTcpServer;
+    int m_iPort;
 };
 
 #endif // MAINWINDOW_H

@@ -6,7 +6,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    m_iPort(8090)
 {
     ui->setupUi(this);
     this->_initData();
@@ -60,7 +61,13 @@ void MainWindow::_initWindow()
 //}
 void MainWindow::startServer()
 {
-
+    this->m_pTcpServer = new QTcpServer(this,this->m_iPort);
+    QObject::connect(
+                m_pTcpServer,
+                SIGNAL(_updateServer(QString,int)),
+                this,
+                SLOT(_updateServer(QString,int))
+                );
 }
 void MainWindow::restartServer()
 {
@@ -75,6 +82,10 @@ void MainWindow::saveLog()
 
 }
 
+void MainWindow::_updateServer(QString message, int length)
+{
+    this->ui->listView->addItem(message,left(length));
+}
 
 
 
@@ -87,21 +98,22 @@ void MainWindow::saveLog()
 void MainWindow::on_StartServer_clicked()
 {
     this->startServer();
+    this->ui->StartServer->setEnabled(false);
 }
 
 void MainWindow::on_RestartClient_clicked()
 {
-
+    this->resertClient();
 }
 
 void MainWindow::on_SaveLog_clicked()
 {
-
+    this->saveLog();
 }
 
 void MainWindow::on_RestartServer_clicked()
 {
-
+    this->restartServer();
 }
 
 void MainWindow::on_IPEditBox_textChanged()
