@@ -44,9 +44,9 @@ void MainWindow::_initData()
 void MainWindow::_initWindow()
 {
     this->setWindowTitle("DebugHelper");
-    this->setWindowIcon(QIcon(":/new/prefix1/icon_48px"));
-    this->setMaximumSize(300,300);
-    this->setMinimumSize(300,300);
+//    this->setWindowIcon(QIcon(":/new/prefix1/icon_48px"));
+    this->setMaximumSize(600,400);
+    this->setMinimumSize(600,400);
 
     if(this->m_pIPEdit)
     {
