@@ -10,7 +10,7 @@ TcpServer::TcpServer(QObject *parent,int port)
 void TcpServer::incomingConnection(int socketDescriptor)
 {
     TcpSocket * tcpSocket = new TcpSocket(this);
-    connect(tcpSocket,SIGNAL(updateClinets(QString,int)),
+    connect(tcpSocket,SIGNAL(updateClients(QString,int)),
             this,SLOT(updateClients(QString,int)));
     connect(tcpSocket,SIGNAL(disconnected(int)),
             this,SLOT(tcpDisconnected(int)));

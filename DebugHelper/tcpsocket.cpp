@@ -5,7 +5,7 @@ TcpSocket::TcpSocket(QObject *parent)
 {
     connect(this,SIGNAL(readyRead()),
             this,SLOT(dataReceived()));
-    connect(this,SIGNAL(disconnect()),
+    connect(this,SIGNAL(disconnected()),
             this,SLOT(datadisconnected()));
 
 }

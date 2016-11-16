@@ -7,10 +7,10 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    m_iPort(8090)
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    m_iPort=8090;
     this->_initData();
     this->_initWindow();
 }
@@ -65,7 +65,7 @@ void MainWindow::startServer()
     //实例tcpServer
     m_pTcpServer = new TcpServer(this, this->m_iPort);
     QObject::connect(m_pTcpServer, SIGNAL(updateServer(QString, int)),
-                     this, SLOT(updateServer(QString, int)));
+                     this, SLOT(_updateServer(QString, int)));
 
 
 }
