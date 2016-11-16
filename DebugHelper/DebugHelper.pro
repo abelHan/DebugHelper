@@ -15,10 +15,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    tcpserver.cpp
+    tcpserver.cpp \
+    tcpsocket.cpp
 
 HEADERS  += mainwindow.h \
-    tcpserver.h
+    tcpserver.h \
+    tcpsocket.h
 
 FORMS    += mainwindow.ui
 

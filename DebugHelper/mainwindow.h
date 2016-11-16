@@ -6,6 +6,7 @@
 
 #include <QtNetwork>
 #include <QTcpServer>
+#include <tcpserver.h>
 
 namespace Ui {
 class MainWindow;

@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QtNetwork/QHostInfo>
+#include "tcpserver.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -46,8 +47,8 @@ void MainWindow::_initWindow()
 {
     this->setWindowTitle("DebugHelper");
 //    this->setWindowIcon(QIcon(":/new/prefix1/icon_48px"));
-    this->setMaximumSize(600,400);
-    this->setMinimumSize(600,400);
+    this->setMaximumSize(600,500);
+    this->setMinimumSize(600,500);
 
     if(this->m_pIPEdit)
     {
@@ -61,13 +62,12 @@ void MainWindow::_initWindow()
 //}
 void MainWindow::startServer()
 {
-    this->m_pTcpServer = new QTcpServer(this,this->m_iPort);
-    QObject::connect(
-                m_pTcpServer,
-                SIGNAL(_updateServer(QString,int)),
-                this,
-                SLOT(_updateServer(QString,int))
-                );
+    //实例tcpServer
+    m_pTcpServer = new TcpServer(this, this->m_iPort);
+    QObject::connect(m_pTcpServer, SIGNAL(updateServer(QString, int)),
+                     this, SLOT(updateServer(QString, int)));
+
+
 }
 void MainWindow::restartServer()
 {
@@ -84,7 +84,7 @@ void MainWindow::saveLog()
 
 void MainWindow::_updateServer(QString message, int length)
 {
-    this->ui->listView->addItem(message,left(length));
+    this->ui->listWidget->addItem(message.left(length));
 }
 
 
@@ -98,6 +98,7 @@ void MainWindow::_updateServer(QString message, int length)
 void MainWindow::on_StartServer_clicked()
 {
     this->startServer();
+    //开启服务后按钮不可点击
     this->ui->StartServer->setEnabled(false);
 }
 
