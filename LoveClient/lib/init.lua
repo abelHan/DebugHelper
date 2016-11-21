@@ -9,6 +9,6 @@ local lib = {}
 
 lib.ui = require("LoveFrames.init")
 lib.net = require("LoverNet.lovernet")
-
+lib.flux = require("flux.flux")
 
 return lib
